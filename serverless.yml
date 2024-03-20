@@ -2,14 +2,27 @@ org: kunalverma2468
 app: serverless-docuconvo-app
 service: serverless-docuconvo
 frameworkVersion: '3'
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs20.x
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+    AuthToken: ${env:AuthToken}
+    REDIS_PORT: ${env:REDIS_PORT}
+    REDIS_URL: ${env:REDIS_URL}
+    REDIS_PASSWORD: ${env:REDIS_PASSWORD}
+    EMAIL_FROM: ${env:EMAIL_FROM}
+    EMAIL_PASSWORD: ${env:EMAIL_PASSWORD}
+    EMAIL_TO: ${env:EMAIL_TO}
+    SUPABASE_URL: ${env:SUPABASE_URL}
+    SUPABASE_ANON_KEY: ${env:SUPABASE_ANON_KEY}
+    GEMINI_API_KEY: ${env:GEMINI_API_KEY}
 
 functions:
   api:
-    handler: src/index.handler
+    handler: dist/index.handler
     events:
       - httpApi: '*'
 
