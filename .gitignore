@@ -1,3 +1,19 @@
 node_modules
 .serverless
-package-lock.json
+
+.ssh*
+dist
+node_modules
+apify_storage
+crawlee_storage
+storage
+
+*pnpm-lock.yaml
+*yarn.lock
+.idea
+
+.env*
+
+# Misc
+.DS_Store
+*.pem
