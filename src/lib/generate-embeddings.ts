@@ -2,7 +2,7 @@ import { PineconeStore } from '@langchain/pinecone';
 
 import { Index, Pinecone, RecordMetadata } from '@pinecone-database/pinecone';
 
-import { prisma } from './db.js';
+import { createPrismaClient } from './db.js';
 import { TaskType } from '@google/generative-ai';
 import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
 import { DocMetadata } from '../main.js';
@@ -20,6 +20,8 @@ export async function generateEmbeddings(
   }
 ) {
   try {
+    const prisma = createPrismaClient();
+
     const pinecone = new Pinecone({
       apiKey: pineconeApiKey,
     });

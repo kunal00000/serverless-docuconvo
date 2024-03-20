@@ -1,7 +1,7 @@
 import Bull from 'bull';
 import { Request, Response } from 'express';
 
-import { prisma } from '../lib/db.js';
+import { createPrismaClient } from '../lib/db.js';
 import {
   AuthToken,
   REDIS_PASSWORD,
@@ -30,6 +30,8 @@ export async function addToQueue(req: Request, res: Response) {
   if (!token || token !== AuthToken) {
     return res.status(401).json({ success: false, message: 'Not authorized' });
   }
+
+  const prisma = createPrismaClient();
 
   try {
     const {
@@ -70,6 +72,8 @@ export async function addToQueue(req: Request, res: Response) {
 }
 
 crawlQueue.process(async (job, done) => {
+  const prisma = createPrismaClient();
+
   try {
     await prisma.logMessage.create({
       data: {
