@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsc && serverless offline --stage dev",
     "build": "tsc",
-    "predeploy": "npm run build && npx prisma generate",
+    "predeploy": "npm run build",
     "deploy": "tsc && serverless deploy --stage prod --region us-east-1",
     "remove": "serverless remove --stage prod --region us-east-1",
     "postinstall": "npx prisma generate"

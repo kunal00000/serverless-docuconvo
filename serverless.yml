@@ -20,12 +20,27 @@ provider:
     SUPABASE_URL: ${env:SUPABASE_URL}
     SUPABASE_ANON_KEY: ${env:SUPABASE_ANON_KEY}
     GEMINI_API_KEY: ${env:GEMINI_API_KEY}
+  httpApi:
+    cors: true
 
 functions:
   api:
     handler: dist/index.handler
     events:
       - httpApi: '*'
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/.prisma/client/libquery_engine-*'
+    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
+    - '!node_modules/.prisma/client/libquery_engine-darwin-*'
+    - '!node_modules/prisma/libquery_engine-*'
+    - '!node_modules/@prisma/engines/**'
+    - '!src/**'
+    - '!tsconfig.json'
+    - '!README.md'
+    - '!.git*'
 
 plugins:
   - serverless-offline
