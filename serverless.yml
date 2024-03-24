@@ -9,6 +9,7 @@ provider:
   runtime: nodejs20.x
   environment:
     NODE_ENV: ${env:NODE_ENV, "production"}
+    DIRECT_URL: ${env:DIRECT_URL}
     DATABASE_URL: ${env:DATABASE_URL}
     AuthToken: ${env:AuthToken}
     REDIS_PORT: ${env:REDIS_PORT}

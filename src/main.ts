@@ -1,7 +1,7 @@
 import { CheerioCrawler } from 'crawlee';
 
 import { generateEmbeddings } from './lib/generate-embeddings.js';
-import { createPrismaClient } from './lib/db.js';
+import { prisma } from './lib/db.js';
 
 export type DocMetadata = {
   title: string;
@@ -30,8 +30,6 @@ export async function runCrawler(
     });
     if (!isExist) data.push({ title, url, text });
   };
-
-  const prisma = createPrismaClient();
 
   const crawler = new CheerioCrawler({
     requestHandler: async ({ request, enqueueLinks, log, $ }) => {

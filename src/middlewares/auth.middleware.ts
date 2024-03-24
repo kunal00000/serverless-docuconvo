@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { createPrismaClient } from '../lib/db.js';
+import { prisma } from '../lib/db.js';
 
 export const queryAuth = async (
   req: Request,
@@ -8,8 +8,6 @@ export const queryAuth = async (
   next: NextFunction
 ) => {
   const token = req.headers.authorization?.split(' ')[1]; // <Bearer sk-()()>
-
-  const prisma = createPrismaClient();
 
   if (token) {
     try {
