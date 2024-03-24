@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "tsc && serverless offline --stage dev --noTimeout",
+    "dev": "tsc && serverless offline --noTimeout",
     "build": "tsc",
     "predeploy": "npm run build",
-    "deploy": "tsc && serverless deploy --stage prod --region us-east-1",
-    "remove": "serverless remove --stage prod --region us-east-1",
+    "deploy": "serverless deploy --region ap-south-1",
+    "remove": "serverless remove --region ap-south-1",
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
